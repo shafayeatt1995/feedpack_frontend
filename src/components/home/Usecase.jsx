@@ -56,7 +56,8 @@ export default function Usecase() {
             Collect user feedback
           </h3>
           <p className="text-white">
-            Use your Insighto's board to let users submit features they want.
+            Use your {`Insighto's`} board to let users submit features they
+            want.
           </p>
           <div
             className={`p-5 mt-7 bg-gray-100 rounded-xl transition-all duration-300 ${

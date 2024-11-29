@@ -68,7 +68,7 @@ export default function Pricing() {
         )
       );
     }
-  }, [annual]);
+  }, [annual, pricing]);
 
   return (
     <div className="container mx-auto md:my-20 my-12 px-2" id="pricing">
