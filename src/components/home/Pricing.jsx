@@ -7,7 +7,7 @@ import { Badge } from "../ui/badge";
 
 export default function Pricing() {
   const [annual, setAnnual] = useState(false);
-  const [pricing, setPricingState] = useState([
+  const [pricing, setPricing] = useState([
     {
       price: 5,
       time: "Month",
@@ -46,10 +46,6 @@ export default function Pricing() {
     },
   ]);
 
-  const setPricing = (pricing) => {
-    setPricingState((prevPricing) => [...prevPricing, ...pricing]);
-  };
-
   useEffect(() => {
     if (annual) {
       setPricing(
@@ -72,7 +68,7 @@ export default function Pricing() {
         )
       );
     }
-  }, [annual, pricing]);
+  }, [annual]);
 
   return (
     <div className="container mx-auto md:my-20 my-12 px-2" id="pricing">
