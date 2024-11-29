@@ -7,7 +7,7 @@ import { Badge } from "../ui/badge";
 
 export default function Pricing() {
   const [annual, setAnnual] = useState(false);
-  const [pricing, setPricing] = useState([
+  const [pricing, setPricingState] = useState([
     {
       price: 5,
       time: "Month",
@@ -45,6 +45,10 @@ export default function Pricing() {
       specialMessage: "Pay once. Access forever.",
     },
   ]);
+
+  const setPricing = (pricing) => {
+    setPricingState((prevPricing) => [...prevPricing, ...pricing]);
+  };
 
   useEffect(() => {
     if (annual) {
