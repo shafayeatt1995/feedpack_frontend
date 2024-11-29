@@ -46,28 +46,45 @@ export default function Pricing() {
     },
   ]);
 
+  // useEffect(() => {
+  //   if (annual) {
+  //     setPricing(
+  //       pricing.map((p) =>
+  //         p.price === 5
+  //           ? { ...p, price: 50, time: "Year" }
+  //           : p.price === 9
+  //           ? { ...p, price: 90, time: "Year" }
+  //           : p
+  //       )
+  //     );
+  //   } else {
+  //     setPricing(
+  //       pricing.map((p) =>
+  //         p.price === 50
+  //           ? { ...p, price: 5, time: "Month" }
+  //           : p.price === 90
+  //           ? { ...p, price: 9, time: "Month" }
+  //           : p
+  //       )
+  //     );
+  //   }
+  // }, [annual]);
   useEffect(() => {
-    if (annual) {
-      setPricing(
-        pricing.map((p) =>
-          p.price === 5
+    setPricing((prev) =>
+      prev.map((p) =>
+        annual
+          ? p.price === 5
             ? { ...p, price: 50, time: "Year" }
             : p.price === 9
             ? { ...p, price: 90, time: "Year" }
             : p
-        )
-      );
-    } else {
-      setPricing(
-        pricing.map((p) =>
-          p.price === 50
-            ? { ...p, price: 5, time: "Month" }
-            : p.price === 90
-            ? { ...p, price: 9, time: "Month" }
-            : p
-        )
-      );
-    }
+          : p.price === 50
+          ? { ...p, price: 5, time: "Month" }
+          : p.price === 90
+          ? { ...p, price: 9, time: "Month" }
+          : p
+      )
+    );
   }, [annual]);
 
   return (
