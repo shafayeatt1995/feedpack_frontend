@@ -13,7 +13,7 @@ export default function Footer() {
           <p>© 2024 Feedpack. All rights reserved.</p>
           <div className="gap-3 md:gap-5 w-full md:w-auto grid grid-cols-2 md:flex justify-items-center">
             <Link href="/terms">Terms & Condition</Link>
-            <Link href="/privacy">Privacy Policy</Link>
+            <Link href="/privacy-policy">Privacy Policy</Link>
             <Link
               href="mailto:contact@feedpack.xyz"
               className="col-span-2 md:col-span-1"
