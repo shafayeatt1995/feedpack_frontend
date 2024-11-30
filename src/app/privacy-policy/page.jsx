@@ -50,7 +50,9 @@ export default function Page() {
           <p>We do not share your data with any other parties.</p>
         </section>
         <section className="mb-8">
-          <h2 className="text-2xl font-semibold mb-4">5. Children's Privacy</h2>
+          <h2 className="text-2xl font-semibold mb-4">
+            5. {`Children's`} Privacy
+          </h2>
           <p>We do not collect any data from children.</p>
         </section>
         <section className="mb-8">

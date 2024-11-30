@@ -22,9 +22,9 @@ export default function Page() {
             1. Acceptance of Terms
           </h2>
           <p>
-            By accessing or using FeedPack ('Service'), you agree to be bound by
-            these Terms of Service ('Terms'). If you do not agree with any part
-            of these Terms, you may not use the Service.
+            By accessing or using FeedPack {`('Service')`}, you agree to be
+            bound by these Terms of Service {`('Terms')`}. If you do not agree
+            with any part of these Terms, you may not use the Service.
           </p>
         </section>
         <section className="mb-8">
