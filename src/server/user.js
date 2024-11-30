@@ -36,10 +36,6 @@ export async function updateFeedbackStatus(body) {
   return apiFetch.post(`/user/feedback/status`, body);
 }
 
-export async function toggleFeedbackVote(body) {
-  return apiFetch.post(`/user/feedback/vote`, body);
-}
-
 export async function addFeedbackComment(body) {
   return apiFetch.post(`/user/comment`, body);
 }

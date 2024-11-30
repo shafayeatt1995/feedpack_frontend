@@ -43,7 +43,7 @@ export function print(data) {
   return JSON.stringify(data, null, 4);
 }
 
-export function getItem(key, defaultValue = "") {
+export function getItem(key, defaultValue = null) {
   if (typeof window === "undefined") return;
   const item = localStorage.getItem(key);
   return item ?? defaultValue;

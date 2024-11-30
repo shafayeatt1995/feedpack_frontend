@@ -18,7 +18,6 @@ import {
   ChevronRightIcon,
   Loader2Icon,
   MessageSquareTextIcon,
-  Trash2Icon,
 } from "lucide-react";
 import { commonApi, userApi } from "@/server";
 import { toast } from "sonner";
@@ -31,8 +30,10 @@ import FeedbackComment from "./FeedbackComment";
 import DeleteFeedback from "./DeleteFeedback";
 import { authUser } from "@/services/nextAuth";
 import eventBus from "@/utils/event";
+import { getItem, removeItem, setItem } from "@/utils";
 
 export default function FeedbackCard({ feedback, publicBoard = false, board }) {
+  const checkVote = getItem(feedback._id) === "voted";
   const statusOptions = [
     { value: "none", label: "None" },
     { value: "researching", label: "Researching" },
@@ -44,14 +45,14 @@ export default function FeedbackCard({ feedback, publicBoard = false, board }) {
     { value: "complete", label: "Completed" },
     { value: "cancel", label: "Canceled" },
   ];
-  const additional = useRef(feedback.voted ? -1 : 1);
   const page = useRef(1);
   const limit = useRef(24);
   const loaded = useRef(false);
   const commentLoaded = useRef(false);
   const [status, setStatus] = useState(feedback.status);
+  const [voteCount, setVoteCount] = useState(feedback.voteCount);
   const [loading, setLoading] = useState(false);
-  const [voted, setVoted] = useState(feedback.voted);
+  const [voted, setVoted] = useState(checkVote);
   const [comments, setComments] = useState([]);
   const [message, setMessage] = useState("");
   const [commentLoadLoading, setCommentLoadLoading] = useState(false);
@@ -59,16 +60,15 @@ export default function FeedbackCard({ feedback, publicBoard = false, board }) {
   const [modal, setModal] = useState(false);
   const [validUser, setValidUser] = useState(null);
 
-  const voteCount = useMemo(() => {
-    return (
-      feedback.voteCount + (feedback.voted === voted ? 0 : additional.current)
-    );
-  }, [voted, feedback.voteCount, feedback.voted]);
   const toggleVote = async () => {
     try {
-      await userApi.toggleFeedbackVote({ _id: feedback._id });
+      const tVoted = getItem(feedback._id) === "voted";
+      await commonApi.toggleFeedbackVote({ _id: feedback._id, voted: !tVoted });
+      tVoted ? removeItem(feedback._id) : setItem(feedback._id, "voted");
+      setVoteCount(voteCount + (tVoted ? -1 : 1));
       setVoted((prev) => !prev);
     } catch (error) {
+      console.log(error);
       toast.error("Something went wrong");
     }
   };

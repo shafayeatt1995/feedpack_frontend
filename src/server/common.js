@@ -11,3 +11,7 @@ export async function getFeedback(params) {
 export async function fetchFeedbackComments(params) {
   return apiFetch.get(`/common/feedback-comments`, params);
 }
+
+export async function toggleFeedbackVote(body) {
+  return apiFetch.post(`/common/feedback/vote`, body);
+}
