@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import GenerateUrl from "./GenerateUrl";
 import { Switch } from "../ui/switch";
 import { Badge } from "../ui/badge";
+import Link from "next/link";
 
 export default function Pricing() {
   const [annual, setAnnual] = useState(false);
@@ -118,6 +119,11 @@ export default function Pricing() {
             </div>
           </div>
         ))}
+      </div>
+      <div className="text-center mt-5">
+        <Link href="/terms/#refund-policy" className="hover:underline">
+          Check Refund Policy
+        </Link>
       </div>
     </div>
   );

@@ -81,9 +81,48 @@ export default function Page() {
             the Service will be resolved in the courts of India.
           </p>
         </section>
+        <section className="mb-8" id="refund-policy">
+          <h2 className="text-2xl font-semibold mb-4">7. Refund Policy</h2>
+          <p>
+            FeedPack offers refunds under the following terms, based on your
+            subscription or purchase plan:
+          </p>
+          <div className="pl-3">
+            <h3 className="text-lg font-semibold mt-4 mb-2">
+              Monthly Subscriptions (Basic & Premium Plans)
+            </h3>
+            <div className="space-y-2 pl-3">
+              <p>
+                1. Refund requests for monthly subscriptions (Basic: $5
+                USD/month & $50 USD/yearly, Premium: $9 USD/month & $90
+                USD/yearly) can only be made within 14 days of the initial
+                purchase.
+              </p>
+              <p>
+                2. Refunds for subscription renewals are not provided. To avoid
+                charges, cancel your subscription before the next billing cycle.
+              </p>
+            </div>
+          </div>
+          <div className="pl-3">
+            <h3 className="text-lg font-semibold mt-4 mb-2">
+              Lifetime Plan ($49 USD/One-Time Payment)
+            </h3>
+            <div className="space-y-2 pl-3">
+              <p>
+                1. Refund requests for the Lifetime Plan must be made within 14
+                days of purchase.
+              </p>
+              <p>
+                2. Refunds will not be provided after 14 days or if the first
+                49-member limit is reached and the promotion ends.
+              </p>
+            </div>
+          </div>
+        </section>
         <section className="mb-8">
           <h2 className="text-2xl font-semibold mb-4">
-            7. Contact Information
+            8. Contact Information
           </h2>
           <p>
             If you have any questions or concerns about these Terms, feel free
