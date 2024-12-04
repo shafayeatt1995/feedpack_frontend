@@ -22,9 +22,9 @@ export default function Page() {
             1. Acceptance of Terms
           </h2>
           <p>
-            By accessing or using FeedPack {`('Service')`}, you agree to be
-            bound by these Terms of Service {`('Terms')`}. If you do not agree
-            with any part of these Terms, you may not use the Service.
+            By accessing or using FeedPack, operated by Marnik, you agree to be
+            bound by these Terms of Service. If you do not agree with any part
+            of these Terms, you may not use the Service.
           </p>
         </section>
         <section className="mb-8">
@@ -32,9 +32,10 @@ export default function Page() {
             2. Description of Service
           </h2>
           <p>
-            FeedPack is a SaaS platform that helps users create and share
-            feature boards to develop profitable features that meet user needs.
-            You do not have the right to resell or redistribute the Service.
+            FeedPack is a SaaS platform operated by Marnik that helps users
+            create and share feature boards to develop profitable features that
+            meet user needs. You do not have the right to resell or redistribute
+            the Service.
           </p>
         </section>
         <section className="mb-8">
@@ -43,7 +44,7 @@ export default function Page() {
           </h2>
           <p>
             All content, trademarks, and data on the Service are owned by
-            FeedPack. Users are granted a limited, non-transferable right to
+            Marnik. Users are granted a limited, non-transferable right to
             access and use the platform after subscribing. This license does not
             grant ownership of the platform or its intellectual property.
           </p>
@@ -53,9 +54,9 @@ export default function Page() {
             4. User Data Collection
           </h2>
           <p>
-            We collect the following personal data: name, email, and payment
-            information. We also collect non-personal data through web cookies.
-            For more details, please review our{" "}
+            Marnik collects the following personal data: name, email, and
+            payment information. We also collect non-personal data through web
+            cookies. For more details, please review our{" "}
             <a className="underline" href="/privacy-policy">
               Privacy Policy
             </a>
@@ -84,8 +85,8 @@ export default function Page() {
         <section className="mb-8" id="refund-policy">
           <h2 className="text-2xl font-semibold mb-4">7. Refund Policy</h2>
           <p>
-            FeedPack offers refunds under the following terms, based on your
-            subscription or purchase plan:
+            FeedPack, operated by Marnik, offers refunds under the following
+            terms, based on your subscription or purchase plan:
           </p>
           <div className="pl-3">
             <h3 className="text-lg font-semibold mt-4 mb-2">
@@ -133,8 +134,8 @@ export default function Page() {
           </p>
         </section>
         <p className="text-gray-500 text-sm mt-8">
-          By using FeedPack, you acknowledge that you have read, understood, and
-          agree to these Terms of Service.
+          By using FeedPack, operated by Marnik, you acknowledge that you have
+          read, understood, and agree to these Terms of Service.
         </p>
       </div>
     </div>
