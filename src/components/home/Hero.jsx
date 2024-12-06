@@ -55,7 +55,7 @@ export default function Hero() {
           </ul>
           <div className="flex mt-5 lg:justify-start justify-center">
             <Link
-              href="#pricing"
+              href="/#pricing"
               className={`${cn(
                 buttonVariants({ variant: "indigo", size: "lgt" })
               )} inline-block`}

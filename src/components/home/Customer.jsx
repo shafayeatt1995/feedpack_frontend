@@ -16,7 +16,7 @@ export default function Customer() {
         </p>
         <div className="flex justify-center pt-10">
           <Link
-            href="#pricing"
+            href="/#pricing"
             className={`${cn(
               buttonVariants({ variant: "white", size: "lgt" })
             )} text-lg font-bold py-7 px-12 hidden md:flex`}
@@ -24,7 +24,7 @@ export default function Customer() {
             Get FeedPack <ChevronRightIcon />
           </Link>
           <Link
-            href="#pricing"
+            href="/#pricing"
             className={`${cn(
               buttonVariants({ variant: "indigo", size: "lgt" })
             )} text-lg font-bold py-7 px-12 md:hidden`}

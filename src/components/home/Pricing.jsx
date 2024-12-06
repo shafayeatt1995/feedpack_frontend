@@ -1,17 +1,27 @@
 "use client";
-import { CircleCheckBigIcon } from "lucide-react";
-import React, { useEffect, useState } from "react";
-import GenerateUrl from "./GenerateUrl";
+import {
+  ChevronRightIcon,
+  CircleCheckBigIcon,
+  Loader2Icon,
+} from "lucide-react";
+import React, { useEffect, useRef, useState } from "react";
 import { Switch } from "../ui/switch";
 import { Badge } from "../ui/badge";
 import Link from "next/link";
+import { initializePaddle } from "@paddle/paddle-js";
+import { Button } from "../ui/button";
+import { authUser } from "@/services/nextAuth";
+import eventBus from "@/utils/event";
 
 export default function Pricing() {
   const [annual, setAnnual] = useState(false);
+  const [paddle, setPaddle] = useState();
+  const [loading, setLoading] = useState(false);
+  const click = useRef(true);
   const [pricing, setPricing] = useState([
     {
-      price: 5,
-      time: "Month",
+      monthlyPrice: 5,
+      yearlyPrice: 49,
       title: "Basic",
       subtitle: "A basic plan for beginners",
       features: [
@@ -21,8 +31,8 @@ export default function Pricing() {
       ],
     },
     {
-      price: 9,
-      time: "Month",
+      monthlyPrice: 9,
+      yearlyPrice: 89,
       title: "Premium",
       subtitle: "A premium plan for advance users",
       features: [
@@ -34,10 +44,10 @@ export default function Pricing() {
     },
     {
       tag: "Best",
-      price: 49,
+      price: 99,
       time: "Lifetime",
       title: "One Time Payment",
-      subtitle: "First 49 members will get lifetime access",
+      subtitle: "First 99 members will get lifetime access",
       features: [
         "All Premium Features.",
         "Lifetime updates",
@@ -46,24 +56,60 @@ export default function Pricing() {
       specialMessage: "Pay once. Access forever.",
     },
   ]);
+  const priceIDS = {
+    5: { id: "pri_01jeax10xp2h5n3gfrm4wppq7n", package: "basicMonth" },
+    9: { id: "pri_01jeax3pzkx703xhns991d979d", package: "premiumMonth" },
+    99: { id: "pri_01jeax4ve6cayqt4hw47km8f47", package: "oneTime" },
+    49: { id: "pri_01jeax8hwnb86azbk66z5ykkhh", package: "basicYear" },
+    89: { id: "pri_01jeaxb1q0swjr1v2z6wqry4ky", package: "premiumYear" },
+  };
+
+  const getPriceID = (price) => {
+    const getPrice = price.price
+      ? price.price
+      : annual
+      ? price.yearlyPrice
+      : price.monthlyPrice;
+    return priceIDS[getPrice];
+  };
+  const openUrl = async (val) => {
+    if (click.current) {
+      try {
+        click.current = false;
+        setLoading(true);
+        const user = await authUser();
+        console.log(`${process.env.NEXT_PUBLIC_BASE_URL}/payment/success`);
+        if (user && getPriceID(val)) {
+          paddle.Checkout.open({
+            displayMode: "overlay",
+            successUrl: `${process.env.NEXT_PUBLIC_BASE_URL}/payment/success`,
+            items: [{ quantity: 1, priceId: getPriceID(val).id }],
+            customer: { email: user.email },
+            customData: {
+              userID: user._id,
+              package: getPriceID(val).package,
+            },
+          });
+        } else {
+          eventBus.emit("loginModal");
+        }
+      } catch (error) {
+        console.error(error);
+      } finally {
+        click.current = true;
+        setLoading(false);
+      }
+    }
+  };
 
   useEffect(() => {
-    setPricing((prev) =>
-      prev.map((p) =>
-        annual
-          ? p.price === 5
-            ? { ...p, price: 50, time: "Year" }
-            : p.price === 9
-            ? { ...p, price: 90, time: "Year" }
-            : p
-          : p.price === 50
-          ? { ...p, price: 5, time: "Month" }
-          : p.price === 90
-          ? { ...p, price: 9, time: "Month" }
-          : p
-      )
-    );
-  }, [annual]);
+    initializePaddle({
+      environment: process.env.NEXT_PUBLIC_PADDLE_ENVIRONMENT,
+      token: process.env.NEXT_PUBLIC_PADDLE_TOKEN,
+    }).then((paddleInstance) => {
+      if (paddleInstance) setPaddle(paddleInstance);
+    });
+  }, []);
 
   return (
     <div className="container mx-auto md:my-20 my-12 px-2" id="pricing">
@@ -72,7 +118,7 @@ export default function Pricing() {
           Pricing
         </h2>
         <p className="text-center mt-3">
-          🎊 First 100 members will get lifetime access 🎊
+          🎊 First 99 members will get lifetime access 🎊
         </p>
         <div className="flex justify-center mt-5 gap-2">
           <Switch checked={annual} onCheckedChange={setAnnual} />
@@ -97,8 +143,17 @@ export default function Pricing() {
             )}
             <div className="mb-6 text-center">
               <h3 className="text-gray-800 text-3xl font-bold">
-                <span className="text-6xl">${price.price}</span>
-                <sub className="text-sm font-medium">USD/{price.time}</sub>
+                <span className="text-6xl">
+                  $
+                  {price.price
+                    ? price.price
+                    : annual
+                    ? price.yearlyPrice
+                    : price.monthlyPrice}
+                </span>
+                <sub className="text-sm font-medium">
+                  USD/{price.time ? price.time : annual ? "Year" : "Month"}
+                </sub>
               </h3>
             </div>
             <h3 className="text-2xl font-bold mb-2">{price.title}</h3>
@@ -115,7 +170,14 @@ export default function Pricing() {
               {price.specialMessage && (
                 <p className="text-center mb-2">{price.specialMessage}</p>
               )}
-              <GenerateUrl productName="main_course" />
+              <Button
+                className="w-full"
+                onClick={() => openUrl(price)}
+                disabled={loading}
+              >
+                {loading && <Loader2Icon className="animate-spin" />}
+                Get FeedPack <ChevronRightIcon />
+              </Button>
             </div>
           </div>
         ))}

@@ -16,11 +16,17 @@ import { Button } from "../ui/button";
 import { usePathname } from "next/navigation";
 import { authUser } from "@/services/nextAuth";
 import eventBus from "@/utils/event";
+import { setItem } from "@/utils";
 
 export default function Nav() {
   const pathname = usePathname();
   const [user, setUser] = useState(null);
   const [isDashboard, setIsDashboard] = useState(false);
+
+  const openModal = () => {
+    setItem("socialLogin", `${window.location.origin}/dashboard`);
+    eventBus.emit("loginModal");
+  };
 
   useEffect(() => {
     setIsDashboard(pathname.startsWith("/dashboard"));
@@ -39,11 +45,13 @@ export default function Nav() {
           <p className="text-2xl font-bold">FeedPack</p>
         </Link>
         <div className="flex md:gap-5 gap-2 items-center">
-          {!isDashboard && (
+          {!isDashboard ? (
             <>
-              <a href="#pricing">Pricing</a>
-              <a href="#faq">FAQ</a>
+              <Link href="/#pricing">Pricing</Link>
+              <Link href="/#faq">FAQ</Link>
             </>
+          ) : (
+            user?.isFreeUser && <Link href="/#pricing">Pricing</Link>
           )}
           {user ? (
             <DropdownMenu>
@@ -82,9 +90,7 @@ export default function Nav() {
               </DropdownMenuContent>
             </DropdownMenu>
           ) : (
-            <Button onClick={() => eventBus.emit("loginModal")}>
-              Get Started
-            </Button>
+            <Button onClick={openModal}>Get Started</Button>
           )}
         </div>
       </div>

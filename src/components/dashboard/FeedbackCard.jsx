@@ -68,7 +68,7 @@ export default function FeedbackCard({ feedback, publicBoard = false, board }) {
       setVoteCount(voteCount + (tVoted ? -1 : 1));
       setVoted((prev) => !prev);
     } catch (error) {
-      console.log(error);
+      console.error(error);
       toast.error("Something went wrong");
     }
   };

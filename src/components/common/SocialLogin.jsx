@@ -4,7 +4,7 @@ import eventBus from "@/utils/event";
 import { Button } from "../ui/button";
 import Image from "next/image";
 import { Dialog, DialogContent, DialogTitle } from "../ui/dialog";
-import { setItem } from "@/utils";
+import { getItem, setItem } from "@/utils";
 import { authUser } from "@/services/nextAuth";
 
 export default function SocialLogin() {
@@ -12,7 +12,9 @@ export default function SocialLogin() {
   const [loggedIn, setLoggedIn] = useState(true);
 
   const socialLogin = () => {
-    setItem("socialLogin", window.location.href);
+    if (!getItem("socialLogin")) {
+      setItem("socialLogin", window.location.href);
+    }
     window.open(
       `${process.env.NEXT_PUBLIC_API_URL}/auth/social-login/google`,
       "_self"
@@ -52,7 +54,7 @@ export default function SocialLogin() {
                   Sign in with google
                 </Button>
               </div>
-              <p className="text-lg text-gray-600 text-center">
+              <p className="text-sm text-gray-600 text-center md:w-2/3 mx-auto">
                 We use {`"Feedpack"`} to collect feedback from users like you.
                 Sign up to post and vote.
               </p>
