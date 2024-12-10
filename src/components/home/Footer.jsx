@@ -12,11 +12,22 @@ export default function Footer() {
         <div className="flex flex-col-reverse md:flex-row justify-between items-center gap-5 py-5 px-5">
           <p>© 2024 Feedpack. All rights reserved.</p>
           <div className="gap-3 md:gap-5 w-full md:w-auto grid grid-cols-2 md:flex justify-items-center">
-            <Link href="/terms">Terms & Condition</Link>
-            <Link href="/privacy-policy">Privacy Policy</Link>
+            <Link
+              href="https://feedpack.xyz/board/feedpack"
+              target="_blank"
+              className="hover:underline"
+            >
+              Submit your feedback
+            </Link>
+            <Link href="/terms" className="hover:underline">
+              Terms & Condition
+            </Link>
+            <Link href="/privacy-policy" className="hover:underline">
+              Privacy Policy
+            </Link>
             <Link
               href="mailto:contact@feedpack.xyz"
-              className="col-span-2 md:col-span-1"
+              className="hover:underline"
             >
               Contact us
             </Link>

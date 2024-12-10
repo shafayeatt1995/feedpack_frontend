@@ -56,6 +56,56 @@ export default function Pricing() {
       specialMessage: "Pay once. Access forever.",
     },
   ]);
+  const [companies, setCompanies] = useState([
+    {
+      name: "Canny",
+      prices: [
+        { name: "Free", price: 0 },
+        { name: "Starter", price: 79 },
+        { name: "Growth", price: 359 },
+      ],
+    },
+    {
+      name: "UseResponse",
+      prices: [
+        { name: "Enterprise Cloud Support Suite", price: 49 },
+        { name: "On Premise Support Solution", price: 80 },
+      ],
+    },
+    {
+      name: "Feedbear",
+      prices: [
+        { name: "Startup", price: 40 },
+        { name: "Business", price: 82 },
+        { name: "Enterprise", price: 249 },
+      ],
+    },
+    {
+      name: "Survicate",
+      prices: [
+        { name: "Good", price: 40 },
+        { name: "Business", price: 82 },
+        { name: "Enterprise", price: 249 },
+      ],
+    },
+    {
+      name: "Sogolytics",
+      prices: [
+        { name: "Plus", price: 25 },
+        { name: "Pro", price: 66 },
+        { name: "Premium", price: 99 },
+      ],
+    },
+    {
+      name: "Uservoice",
+      prices: [
+        { name: "Free", price: 0 },
+        { name: "Pro", price: 899 },
+        { name: "Internal Capture", price: 1199 },
+        { name: "Premium", price: 1349 },
+      ],
+    },
+  ]);
   const priceIDS = {
     5: { id: "pri_01jerfgq9c91ktkvt34cyn3hsa", package: "basicMonth" },
     9: { id: "pri_01jerfhzw9ndmd0a4g765a066y", package: "premiumMonth" },
@@ -193,6 +243,28 @@ export default function Pricing() {
             </div>
           </div>
         ))}
+      </div>
+      <div className="mt-10">
+        <h3 className="text-3xl font-bold mb-2 text-center">
+          Pricing Comparison
+        </h3>
+        <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-5">
+          {companies.map((company, i) => (
+            <div key={i} className="border-[3px] p-4 rounded-3xl">
+              <p className="text-2xl font-bold mb-2 text-center">
+                {company.name}
+              </p>
+              {company.prices.map((price, key) => (
+                <div key={key} className="flex items-center justify-between">
+                  <p>{price.name}</p>
+                  <p>
+                    <span className="font-bold text-lg">${price.price}</span>/mo
+                  </p>
+                </div>
+              ))}
+            </div>
+          ))}
+        </div>
       </div>
       <div className="text-center mt-5">
         <Link href="/terms/#refund-policy" className="hover:underline">
