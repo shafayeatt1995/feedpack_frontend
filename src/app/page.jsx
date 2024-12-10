@@ -20,6 +20,11 @@ export default function Page() {
       <Pricing />
       <Faq />
       <Footer />
+      <script
+        defer
+        data-domain="feedpack.xyz"
+        src="https://popupr.com/js/script.js"
+      />
     </>
   );
 }
