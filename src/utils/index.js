@@ -2,7 +2,7 @@ import { toast } from "sonner";
 
 const loadedAnimations = new Map();
 
-export async function initLottie(container, path) {
+export async function initLottie(container, path, loop = true) {
   if (typeof window === "undefined") return;
 
   if (
@@ -31,7 +31,7 @@ export async function initLottie(container, path) {
   window.lottie.loadAnimation({
     container: container,
     renderer: "canvas",
-    loop: true,
+    loop,
     autoplay: true,
     path: path,
   });
