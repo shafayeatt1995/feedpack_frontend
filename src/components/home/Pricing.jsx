@@ -57,11 +57,11 @@ export default function Pricing() {
     },
   ]);
   const priceIDS = {
-    5: { id: "pri_01jeax10xp2h5n3gfrm4wppq7n", package: "basicMonth" },
-    9: { id: "pri_01jeax3pzkx703xhns991d979d", package: "premiumMonth" },
-    99: { id: "pri_01jeax4ve6cayqt4hw47km8f47", package: "oneTime" },
-    49: { id: "pri_01jeax8hwnb86azbk66z5ykkhh", package: "basicYear" },
-    89: { id: "pri_01jeaxb1q0swjr1v2z6wqry4ky", package: "premiumYear" },
+    5: { id: "pri_01jerfgq9c91ktkvt34cyn3hsa", package: "basicMonth" },
+    9: { id: "pri_01jerfhzw9ndmd0a4g765a066y", package: "premiumMonth" },
+    49: { id: "pri_01jerfs9denh474yx4gfjcjyx7", package: "basicYear" },
+    89: { id: "pri_01jerftc0nqes23cccc7f1mbqw", package: "premiumYear" },
+    99: { id: "pri_01jerfv9243prksrbnk5jmmnwz", package: "oneTime" },
   };
 
   const getPriceID = (price) => {
@@ -78,11 +78,23 @@ export default function Pricing() {
         click.current = false;
         setLoading(true);
         const user = await authUser();
-        console.log(`${process.env.NEXT_PUBLIC_BASE_URL}/payment/success`);
         if (user && getPriceID(val)) {
           paddle.Checkout.open({
-            displayMode: "overlay",
-            successUrl: `${process.env.NEXT_PUBLIC_BASE_URL}/payment/success`,
+            settings: {
+              allowedPaymentMethods: [
+                "alipay",
+                "apple_pay",
+                "bancontact",
+                "card",
+                "google_pay",
+                "ideal",
+                "paypal",
+                "saved_payment_methods",
+              ],
+              displayMode: "overlay",
+              successUrl: `${process.env.NEXT_PUBLIC_BASE_URL}/payment/success`,
+              variant: "one-page",
+            },
             items: [{ quantity: 1, priceId: getPriceID(val).id }],
             customer: { email: user.email },
             customData: {
