@@ -19,6 +19,7 @@ export default function NotFound() {
         await initLottie(loadingRef.current, animationPath);
       }
     };
+
     document.title = `404 | Feedpack`;
     init();
 
