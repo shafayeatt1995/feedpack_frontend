@@ -26,6 +26,7 @@ export default async function RootLayout({ children }) {
         ></Script>
         <Script src="/js/gtag.js" type="text/javascript" defer></Script>
         <Script src="/js/gana.js" type="text/javascript" defer></Script>
+        <Script src="/js/clarity.js" type="text/javascript" defer></Script>
       </head>
       <body
         className={`${font.className} text-gray-800 font-medium`}
