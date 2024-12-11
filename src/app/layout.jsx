@@ -20,7 +20,12 @@ export default async function RootLayout({ children }) {
           async
           src="https://www.googletagmanager.com/gtag/js?id=GTM-M7WLCRQF"
         ></Script> */}
+        <Script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-3CJSXVWENP"
+        ></Script>
         <Script src="/js/gtag.js" type="text/javascript" defer></Script>
+        <Script src="/js/gana.js" type="text/javascript" defer></Script>
       </head>
       <body
         className={`${font.className} text-gray-800 font-medium`}
