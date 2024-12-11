@@ -6,6 +6,7 @@ export async function GET() {
   const staticRoutes = ["/", "/login", "/privacy-policy", "/terms"];
 
   // Dynamic routes (Fetch from your API or database)
+  const dynamicRoutes = [];
   //   const dynamicRoutes = await fetch(`${baseUrl}/api/posts`)
   //     .then((res) => res.json())
   //     .then((posts) => posts.map((post: { id: string }) => `/post/${post.id}`));
