@@ -47,8 +47,12 @@ export default function Nav() {
         <div className="flex md:gap-5 gap-2 items-center">
           {!isDashboard ? (
             <>
-              <Link href="/#pricing">Pricing</Link>
-              <Link href="/#faq">FAQ</Link>
+              <Link href="/#pricing" className="hidden md:block">
+                Pricing
+              </Link>
+              <Link href="/#faq" className="hidden md:block">
+                FAQ
+              </Link>
             </>
           ) : (
             user?.isFreeUser && <Link href="/#pricing">Pricing</Link>

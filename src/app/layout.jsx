@@ -20,10 +20,6 @@ export default async function RootLayout({ children }) {
           content="SVm-v8EsxUz-x75TE9OkHV3OakwQIg4yMkqPL4QQncI"
         />
         <link rel="icon" href="/favicon.ico" />
-        {/* <Script
-          async
-          src="https://www.googletagmanager.com/gtag/js?id=GTM-M7WLCRQF"
-        ></Script> */}
         <Script
           async
           src="https://www.googletagmanager.com/gtag/js?id=G-3CJSXVWENP"
