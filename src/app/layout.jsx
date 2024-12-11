@@ -15,6 +15,10 @@ export default async function RootLayout({ children }) {
   return (
     <html lang="en" className="scroll-smooth hydrated">
       <head>
+        <meta
+          name="google-site-verification"
+          content="SVm-v8EsxUz-x75TE9OkHV3OakwQIg4yMkqPL4QQncI"
+        />
         <link rel="icon" href="/favicon.ico" />
         {/* <Script
           async
