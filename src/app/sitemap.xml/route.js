@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 
 export async function GET() {
-  const baseUrl = "https://feedpack.xyz/";
+  const baseUrl = "https://feedpack.xyz";
 
   const staticRoutes = ["/", "/login", "/privacy-policy", "/terms"];
 
