@@ -237,7 +237,7 @@ export default function FeedbackCard({ feedback, publicBoard = false, board }) {
             </div>
             <div className="flex mt-2">
               <div className="flex-grow flex flex-col justify-between">
-                <p>{feedback.description}</p>
+                <p className="whitespace-pre-wrap">{feedback.description}</p>
                 <p className="flex gap-1 items-center text-gray-600 text-sm mt-3">
                   <MessageSquareTextIcon size={20} /> {feedback.commentCount}
                 </p>

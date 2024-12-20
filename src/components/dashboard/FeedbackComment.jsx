@@ -33,7 +33,7 @@ export default function FeedbackComment({
       {comments.length > 0 ? (
         comments.map((comment, i) => (
           <div key={comment._id} className="mb-6 space-y-1">
-            <p>{comment.message}</p>
+            <p className="whitespace-pre-wrap">{comment.message}</p>
             <div className="flex justify-between">
               <div className="flex items-center gap-1 text-sm">
                 <Image
