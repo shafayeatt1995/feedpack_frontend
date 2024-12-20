@@ -76,14 +76,14 @@ export default function FeatureForm({ board, publicBoard = false }) {
         <div className="grid w-full items-center gap-1">
           <div className="flex justify-between items-center">
             <Label htmlFor="description">Short description</Label>
-            <p className="text-xs text-gray-500">{description.length}/300</p>
+            <p className="text-xs text-gray-500">{description.length}/500</p>
           </div>
           <div className="relative">
             <Textarea
               placeholder="Type your description here."
               id="description"
               value={description}
-              maxLength={300}
+              maxLength={500}
               onChange={(e) => setDescription(e.target.value)}
               rows={5}
               disabled={!permission}
